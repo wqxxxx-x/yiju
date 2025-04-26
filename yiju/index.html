@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>逸居</title>
+  <!-- Bootstrap -->
+  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <style>
+    
+    .header-image {
+      width: 100%;
+      height: 90vh;
+      background:
+        linear-gradient(to bottom, rgba(100, 100, 100, 0.4)),
+        url('images/beijing.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    /* 添加灰色蒙版 */
+    .header-image::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(224, 224, 224, 0.137);
+      /* 灰色半透明蒙版 */
+      z-index: 0;
+    }
+
+    .header-image>* {
+      position: relative;
+      /* 确保内容在蒙版上方 */
+      z-index: 1;
+    }
+
+    .header-content {
+      /* 移除原有的黑色背景 */
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .fixed-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0; padding: 0;">
+  <div style="flex: 1; padding-bottom: 60px;">
+    <!-- 顶部背景图片 -->
+    <div class="header-image">
+      <div style="font-family: '楷体', 'KaiTi', 'STKaiti', serif; transform: translateY(-50%); margin-top: 2%;">
+        <h1 style="font-size: 4em; 
+                   font-weight: bold;  /* 加粗效果 */
+                   text-shadow: 3px 3px 6px rgba(0,0,0,0.7),  /* 主阴影 */
+                               -1px -1px 0 rgba(255,255,255,0.3);  /* 高光效果 */
+                   color: #fff;  /* 确保文字颜色为白色 */
+                   letter-spacing: 4px;  /* 字间距微调 */
+                   text-align: center;">逸居智慧小屋</h1>
+      </div>
+    </div>
+
+    <!-- 固定在图片下方的导航栏 -->
+    <nav class="navbar navbar-inverse fixed-navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">逸居智慧小屋</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">首页</a></li>
+            <li><a href="personal.html">个人介绍</a></li>
+            <li><a href="pcb.html">PCB</a></li>
+            <li><a href="android.html">安卓</a></li>
+            <li><a href="web.html">WEB</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="搜索">
+            </div>
+            <button type="submit" class="btn btn-default">搜索</button>
+          </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- 轮播图部分 -->
+      <div class="swiper-container" style="width: 900px; height: 500px; margin: 20px auto;">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="images/1.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="1">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/2.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="2">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/3.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="3">
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+
+      <script>
+        var swiper = new Swiper('.swiper-container', {
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          initialSlide: 1, // 默认显示中间的图片(索引为1)
+          coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      </script>
+
+      <!-- 内容部分 -->
+      <div class="container" style="max-width: 1200px;">
+        <!-- 内容部分 -->
+        <div class="row" id="personal" style="margin: 0 -5px;"> <!-- 调整边距抵消 -->
+          <div class="col-md-12" style="
+        background: linear-gradient(rgba(240, 240, 240, 0.8), rgba(220, 220, 220, 0.9));
+        padding: 30px;
+        border-radius: 10px;
+        margin: 0 0px 15px -5px; /* 左右边距改为5px */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      ">
+            <h2 style="font-family: '楷体', 'KaiTi', 'STKaiti', serif; color: #333;">个人介绍</h2>
+            <p style="font-size: 16px; line-height: 1.6;">九年制义务教育编外人员在旅商的收获</p>
+            <p><a class="btn btn-default" href="personal.html" role="button">进入 &raquo;</a></p>
+          </div>
+        </div>
+
+        <div class="row" style="margin: 30px 0; display: flex; justify-content: space-between;">
+          <div class="col-md-4" style="
+        background: linear-gradient(rgba(240, 240, 240, 0.8), rgba(220, 220, 220, 0.9));
+        padding: 20px;
+        border-radius: 10px;
+        margin: 0 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        flex: 1;
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+      ">
+            <h2 style="font-family: '楷体', 'KaiTi', 'STKaiti', serif; color: #333; margin-top: 0;">实验目的</h2>
+            <div style="flex: 1;">
+              <p style="font-size: 16px; line-height: 1.6; margin-bottom: 0;">独自完成逸居智慧小屋的制作与功能实现</p>
+            </div>
+          </div>
+          <div class="col-md-4" style="
+      background: linear-gradient(rgba(240, 240, 240, 0.8), rgba(220, 220, 220, 0.9));
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 5px; /* 缩短左右边距 */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      flex: 1;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+    ">
+            <h2 style="font-family: '楷体', 'KaiTi', 'STKaiti', serif; color: #333; margin-top: 0;">实验内容</h2>
+            <div style="flex: 1;">
+              <p style="font-size: 16px; line-height: 1.6; margin-bottom: 5px;">1.学习了PCB板的制作并将电路图转换为现实</p>
+              <p style="font-size: 16px; line-height: 1.6; margin-bottom: 5px;">2.使用安卓写出手机界面</p>
+              <p style="font-size: 16px; line-height: 1.6; margin-bottom: 5px;">3.在Trae软件中使用html语言编写WEB代码</p>
+              <p style="font-size: 16px; line-height: 1.6; margin-bottom: 0;">4.学习了物联网云平台Thingsboard</p>
+            </div>
+          </div>
+
+          <div class="col-md-4" style="
+      background: linear-gradient(rgba(240, 240, 240, 0.8), rgba(220, 220, 220, 0.9));
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 5px; /* 缩短左右边距 */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      flex: 1;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+    ">
+            <h2 style="font-family: '楷体', 'KaiTi', 'STKaiti', serif; color: #333; margin-top: 0;">实验步骤</h2>
+            <div style="flex: 1;">
+              <p style="font-size: 16px; line-height: 1.6; margin-bottom: 5px;">1.使用嘉立创eda设计了电路板，并打印出来</p>
+              <p style="font-size: 16px; line-height: 1.6; margin-bottom: 5px;">2.使用Android Studio做出了手机端APP的界面</p>
+              <p style="font-size: 16px; line-height: 1.6; margin-bottom: 5px;">3.使用Trae软件做出网页端，实现远程检测</p>
+              <p style="font-size: 16px; line-height: 1.6; margin-bottom: 0;">4.在Thingsboard平台上，实现与硬件的连接</p>
+            </div>
+          </div>
+        </div>
+      <p>copywrite by 王淇萱≽• ˕ • ྀི≼</p>
+
+  </body>
+
+</html>
